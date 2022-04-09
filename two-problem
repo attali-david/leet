@@ -1,0 +1,17 @@
+// Two Problem solution: 
+// An O(n) solution requires avoiding double loops to iterate through every index
+// given a starting index. Create a hashmap by filling an object with indices as you 
+// progress through a for loop. Check if target - index has already been evaluated 
+// and added to our hashmap. 
+
+
+var twoSum = function(nums, target) {
+    const hash = {}
+    for(let i = 0; i < nums.length; i++) {
+        if(hash[target - nums[i]] !== undefined) {
+            return [hash[target - nums[i]], i]
+        }
+        hash[nums[i]] = i
+    }
+};
+
