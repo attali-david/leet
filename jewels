@@ -1,0 +1,67 @@
+var numJewelsInStones = function(jewels, stones) {
+    let hashmap = {}
+    let count = 0
+    
+    for(const jewel of jewels) {
+        hashmap[jewel] = true
+        console.log(hashmap, jewel)
+    }
+    
+    for(const stone of stones) {
+        if(!!hashmap[stone]){
+            count++
+        }
+    }
+    console.log(count)
+    return count
+};
+
+var smallerNumbersThanCurrent = function(nums) {
+    let arr = nums.map(i => i)
+    nums.sort((a, b) => b - a)
+    let hash = {}
+    let ans = []
+
+    for(let i = 0; i < nums.length; i++) {
+        let n = nums[i]
+        if (!!hash[n]) {
+            hash[n] -= 1
+        } else {
+            hash[n] = nums.length - i - 1
+        }
+        console.log(hash)
+    }
+    
+    for(let n of arr) {
+        ans.push(hash[n])
+        console.log(n, ans)
+    }
+    console.log(ans)
+    return ans
+};
+
+var countPoints = function(rings) {
+    let hash = {}
+    let count = 0
+
+    for(let i = 0; i < rings.length; i ++) {
+        if(!Number(rings[i])){
+            if(hash[rings[i + 1]]) {
+                hash[rings[i + 1]].push(rings[i])
+            } else {
+                hash[rings[i + 1]] = [rings[i]]
+            }
+        }
+        i++
+    }
+
+    for (const rod in hash) {
+        console.log(rod, hash[rod])
+        if(hash[rod].includes("R") && hash[rod].includes("G") && hash[rod].includes("B")) {
+            count++
+            console.log(count)
+        }
+    }
+};
+
+countPoints("B0B6G0R6R0R6G9")
