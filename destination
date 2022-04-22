@@ -1,0 +1,19 @@
+var destCity = function(paths) {
+    let hash = {}
+    
+    for(let city of paths) {
+        hash[city[0]] = false
+
+        if(!hash.hasOwnProperty([city[1]])) {
+            hash[city[1]] = true
+        }
+    }
+
+    for(let dest in hash) { 
+        if(hash[dest] === true) {
+            return dest
+        }
+    }
+};
+
+destCity([["B","C"],["D","B"],["C","A"]])
