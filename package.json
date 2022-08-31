@@ -3,6 +3,6 @@
     "dotenv": "^16.0.0"
   },
   "scripts": {
-    "start": "node longestRepeatingReplacement.js"
+    "start": "node maxFruit.js"
   }
 }
