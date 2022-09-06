@@ -1,24 +1,26 @@
-var merge = function (intervals) {
-    if (!intervals.length) return intervals
-    let arr = []
+function merge(intervals) {
     intervals.sort((a, b) => a[0] - b[0])
+    let arr = []
 
-    for (let i = 1; i < intervals.length; i++) {
-        let preCur = intervals[i - 1]
-        let cur = intervals[i]
-        if (preCur[1] >= cur[1]) {
-            if (preCur)
-                arr.push([preCur[0], preCur[1]])
+    let current = intervals[0]
+
+    for(let i = 0 ; i < intervals.length; i++) {
+        let int = intervals[i]
+        if(current[1] >= int[0]) {
+            current = [current[0], Math.max(current[1], int[1])]
         } else {
-            arr.push([intervals[i][0], intervals[i + 1][1]])
+            arr.push(current)
+            current = int
         }
-        arr.push(intervals[i])
+        if (i == intervals.length - 1)  {
+            arr.push(current)
+        }
     }
-console.log(arr)
-return arr
-};
+    return arr
+}
 
 // merge([[1, 3], [2, 6], [8, 10], [15, 18]])
 // merge([[1, 4], [4, 5]])
-
-// in progress
+// merge([[1,3]])
+// merge([[1,4],[1,4]])
+// merge([[1,4],[5,6]])
