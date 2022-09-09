@@ -1,20 +1,40 @@
-function insert(intervals, newInterval) {
-    intervals.push(newInterval)
-    intervals.sort((a,b) => a[0] - b[0])
-    let cur = intervals[0]
+// function insert(intervals, newInterval) {
+//     intervals.push(newInterval)
+//     intervals.sort((a,b) => a[0] - b[0])
+//     let cur = intervals[0]
+//     let start = null
+
+//     for(let i = 0; i < intervals.length; i++) {
+//         let int = intervals[i]
+//         if(cur[1] >= int[0]) {
+//             if(start === null) {start = i; console.log('start', start)}
+//             cur = [cur[0], Math.max(cur[1], int[1])]
+//         } else {
+//             if (start >= 0) {
+//                 intervals.splice(start, i, cur)
+//                 console.log('after', start, i, intervals)
+//                 break
+//             }
+//             cur = int
+//         }
+//     }
+//     console.log(intervals)
+//     return intervals
+// }
+
+function intervals(intervals, newInterval) {
+    let cur = newInterval
     let start = null
 
     for(let i = 0; i < intervals.length; i++) {
         let int = intervals[i]
         if(cur[1] >= int[0]) {
-            if(start === null && cur !== int) start = i
-           
+            if(start === null) {start = i; console.log('start', start)}
             cur = [cur[0], Math.max(cur[1], int[1])]
-            console.log('CURRENT' , cur)
         } else {
             if (start >= 0) {
                 intervals.splice(start, i, cur)
-                console.log('after', intervals)
+                console.log('after', start, i, intervals)
                 break
             }
             cur = int
@@ -23,6 +43,7 @@ function insert(intervals, newInterval) {
     console.log(intervals)
     return intervals
 }
+
 
 
 
